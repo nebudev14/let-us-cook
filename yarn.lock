@@ -114,6 +114,11 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@next-auth/prisma-adapter@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@next-auth/prisma-adapter/-/prisma-adapter-1.0.7.tgz#86195e9cc5a23a9e71370c7e8745b630388143b1"
+  integrity sha512-Cdko4KfcmKjsyHFrWwZ//lfLUbcLqlyFqjd/nYE2m3aZ7tjMNUjpks47iw7NTCnXf+5UWz5Ypyt1dSs1EP5QJw==
+
 "@next/env@14.2.4":
   version "14.2.4"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-14.2.4.tgz#5546813dc4f809884a37d257b254a5ce1b0248d7"
@@ -201,6 +206,11 @@
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
+
+"@prisma/client@^5.15.1":
+  version "5.15.1"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-5.15.1.tgz#68e1f8b092a0eed6cd61d5f94ed8bb5cc3bc8ca1"
+  integrity sha512-fmZRGmsUJ9+VwC/AvfP/PwdpD0xAEyPvNsD9/B3+GYpETq9VejVRT3PiqNvl76q1uYYzNZeo8u/LmzzTetHSEg==
 
 "@prisma/debug@5.15.1":
   version "5.15.1"
