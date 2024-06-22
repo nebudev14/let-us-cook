@@ -1,9 +1,22 @@
-import { NextPage } from "next";
-import { useSession } from "next-auth/react";
+import axios from "axios";
+import {
+  GetServerSideProps,
+  GetServerSidePropsContext,
+  GetStaticProps,
+  GetStaticPropsContext,
+  InferGetServerSidePropsType,
+  InferGetStaticPropsType,
+  NextPage,
+} from "next";
+import { getServerSession } from "next-auth";
+import { getSession, useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 
-const Dashboard: NextPage = () => {
+const Dashboard: NextPage = (
+  props: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
   const { data: session } = useSession();
+  console.log(props?.data);
 
   return (
     <div className="h-screen px-10 py-6 ">
@@ -19,6 +32,19 @@ const Dashboard: NextPage = () => {
       </div>
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const session = await getSession(context);
+  const data = await prisma.user.findUnique({ where: { id: session?.user.id } })
+
+  return {
+    props: {
+      data: data,
+    },
+  };
 };
 
 export default Dashboard;
