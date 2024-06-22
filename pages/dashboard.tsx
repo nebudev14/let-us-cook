@@ -1,8 +1,6 @@
 import {
   KitchenType,
-  KitchenUser,
   PaymentType,
-  UserStatus,
 } from "@prisma/client";
 import axios from "axios";
 import {
@@ -13,6 +11,7 @@ import { getServerSession } from "next-auth";
 import { getSession, useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
+import DisplayMap from "../components/map";
 
 export default function Dashboard(
   props: InferGetServerSidePropsType<typeof getServerSideProps>
@@ -33,7 +32,9 @@ export default function Dashboard(
           ))}
         </div>
         <div className="flex items-center col-span-2 px-6 py-4 border-2 rounded-xl"></div>
-        <div className="col-span-2 row-span-2 p-4 border-2 rounded-xl">03</div>
+        <div className="col-span-2 row-span-2 p-4 border-2 rounded-xl">
+          
+        </div>
       </div>
       <button
         onClick={async () => {
@@ -55,7 +56,7 @@ export default function Dashboard(
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getSession(context);
 
-  const data = await prisma.kitchenUser.findMany({
+  const data = await prisma.reservation.findMany({
     where: {
       userId: session?.user.id as string,
     },
