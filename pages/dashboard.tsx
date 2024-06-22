@@ -1,8 +1,6 @@
 import {
   KitchenType,
-  KitchenUser,
   PaymentType,
-  UserStatus,
 } from "@prisma/client";
 import axios from "axios";
 import {
@@ -13,6 +11,8 @@ import { getServerSession } from "next-auth";
 import { getSession, useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
+import DisplayMap from "../components/map";
+import RegisterKitchen from "../components/register-kitchen";
 
 export default function Dashboard(
   props: InferGetServerSidePropsType<typeof getServerSideProps>
@@ -109,7 +109,7 @@ export default function Dashboard(
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getSession(context);
 
-  const data = await prisma.kitchenUser.findMany({
+  const data = await prisma.reservation.findMany({
     where: {
       userId: session?.user.id as string,
     },
