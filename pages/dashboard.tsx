@@ -75,19 +75,20 @@ export default function Dashboard(
           <h3 className="text-xl border-b border-zinc-700 mb-5">Reviews</h3>
         </div>
         <div className="flex items-center col-span-2 px-6 py-4 border-2 rounded-xl">
-          {data.map((kitchen, i) => (
-            <div key={i} className="py-2">
-              <img className="max-w-60 drop-shadow-md rounded-md" src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-              <h3 className="text-xl">{kitchen.kitchen.name}</h3>
-              <p>location</p>
-              <div className="flex flex-col">
+          {/* {data.map((kitchen, i) => ( */}
+            {/* <div key={i} className="py-2"> */}
+              {/* <img className="max-w-60 drop-shadow-md rounded-md" src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" /> */}
+              {/* <h3 className="text-xl">{kitchen.kitchen.name}</h3> */}
+              {/* <p>location</p> */}
+              {/* <div className="flex flex-col"> */}
                 {/* for each feature */}
-                <p>features</p>
-              </div>
-            </div>
-          ))}
+                {/* <p>features</p> */}
+              {/* </div> */}
+            {/* </div> */}
+          {/* ))} */}
         </div>
-        {/* <div className="col-span-2 row-span-2 p-4 border-2 rounded-xl">03</div> */}
+        <div className="flex items-center col-span-2 px-6 py-4 border-2 rounded-xl"></div>
+        <div className="col-span-2 row-span-2 p-4 border-2 rounded-xl">03</div>
       </div>
       <button
         onClick={async () => {
@@ -109,18 +110,18 @@ export default function Dashboard(
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getSession(context);
 
-  const data = await prisma.reservation.findMany({
-    where: {
-      userId: session?.user.id as string,
-    },
-    include: {
-      kitchen: true,
-    },
-  });
+  // const data = await prisma.reservation.findMany({
+  //   where: {
+  //     userId: session?.user.id as string,
+  //   },
+  //   include: {
+  //     kitchen: true,
+  //   },
+  // });
 
   return {
     props: {
-      data: data,
+      // data: data,
     },
   };
 }
