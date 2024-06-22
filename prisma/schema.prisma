@@ -61,14 +61,16 @@ model User {
 }
 
 model Kitchen {
-  id     String        @id @default(cuid())
-  name   String
-  desc   String
-  tags   String[]
-  type   KitchenType
-  users  KitchenUser[]
-  Review Review[]
+  id       String        @id @default(cuid())
+  name     String
+  desc     String
+  tags     String[]
+  location String
+  type     KitchenType
+  users    KitchenUser[]
+  Review   Review[]
 }
+
 
 model KitchenUser {
   userId    String

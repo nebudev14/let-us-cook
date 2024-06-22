@@ -1,33 +1,38 @@
-import { KitchenType, PaymentType, UserStatus } from "@prisma/client";
+import {
+  KitchenType,
+  KitchenUser,
+  PaymentType,
+  UserStatus,
+} from "@prisma/client";
 import axios from "axios";
 import {
-  GetServerSideProps,
   GetServerSidePropsContext,
-  GetStaticProps,
-  GetStaticPropsContext,
   InferGetServerSidePropsType,
-  InferGetStaticPropsType,
-  NextPage,
 } from "next";
 import { getServerSession } from "next-auth";
 import { getSession, useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
+import Image from "next/image";
 
-const Dashboard: NextPage = (
+export default function Dashboard(
   props: InferGetServerSidePropsType<typeof getServerSideProps>
-) => {
+) {
   const { data: session } = useSession();
+  const { data } = props;
+  console.log(data);
 
   return (
     <div className="h-screen px-10 py-6 ">
-      <h1 className="mb-6 text-xl">
-        Welcome, {session?.user?.name?.split(" ")[0]}
-      </h1>
+      <h1 className="mb-6 text-xl"></h1>
       <div className="grid grid-flow-col grid-rows-3 gap-6 min-h-[75vh]">
         <div className="w-full row-span-3 p-6 border-2 rounded-lg shadow-md">
-          Loasdfsa Loasdfsa Loasdfsa{" "}
+          {data.map((kitchen, i) => (
+            <div key={i} className="py-2">
+              {kitchen.kitchen.name}
+            </div>
+          ))}
         </div>
-        <div className="col-span-2 p-4 border-2 rounded-xl">02</div>
+        <div className="flex items-center col-span-2 px-6 py-4 border-2 rounded-xl"></div>
         <div className="col-span-2 row-span-2 p-4 border-2 rounded-xl">03</div>
       </div>
       <button
@@ -45,14 +50,18 @@ const Dashboard: NextPage = (
       </button>
     </div>
   );
-};
+}
 
-export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getSession(context);
-  const data = await prisma.user.findUnique({
-    where: { id: session?.user.id },
+
+  const data = await prisma.kitchenUser.findMany({
+    where: {
+      userId: session?.user.id as string,
+    },
+    include: {
+      kitchen: true,
+    },
   });
 
   return {
@@ -60,6 +69,4 @@ export const getServerSideProps: GetServerSideProps = async (
       data: data,
     },
   };
-};
-
-export default Dashboard;
+}
