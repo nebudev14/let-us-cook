@@ -32,15 +32,13 @@ const Dashboard: NextPage = (
       </div>
       <button
         onClick={async () => {
-          await axios
-            .post(`${process.env.NEXT_PUBLIC_DOMAIN}/api/kitchen`, {
-              name: "Boston Kitchen",
-              desc: "IT'S A BIG KITCHEN. BIG GUY. REALLY COOL",
-              tags: ["Microwave", "Rice Cooker", "Oven", "Yes"],
-              type: KitchenType.PRIVATE,
-              payment: PaymentType.FOOD,
-            })
-            .then((res) => console.log(res.data));
+          await axios.post(`${process.env.NEXT_PUBLIC_DOMAIN}/api/kitchen`, {
+            name: "Boston Kitchen",
+            desc: "IT'S A BIG KITCHEN. BIG GUY. REALLY COOL",
+            tags: ["Microwave", "Rice Cooker", "Oven", "Yes"],
+            type: KitchenType.PRIVATE,
+            payment: PaymentType.FOOD,
+          });
         }}
       >
         bruh
