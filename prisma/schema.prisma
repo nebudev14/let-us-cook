@@ -56,31 +56,35 @@ model User {
   emailVerified DateTime?
   accounts      Account[]
   sessions      Session[]
-  kitchens      KitchenUser[]
-  Review        Review[]
+  reviews       Review[]
+  reservations  Reservation[]
+  ownedKitchens Kitchen[]
+}
+
+model Reservation {
+  start     DateTime
+  end       DateTime
+  userId    String
+  kitchenId String
+  user      User     @relation(fields: [userId], references: [id])
+  kitchen   Kitchen  @relation(fields: [kitchenId], references: [id])
+
+  @@id([userId, kitchenId])
 }
 
 model Kitchen {
-  id       String        @id @default(cuid())
+  id       String   @id @default(cuid())
   name     String
   desc     String
   tags     String[]
   location String
-  type     KitchenType
-  users    KitchenUser[]
-  Review   Review[]
-}
+  owner    User     @relation(fields: [userId], references: [id])
 
-
-model KitchenUser {
-  userId    String
-  kitchenId String
-  user      User        @relation(fields: [userId], references: [id])
-  kitchen   Kitchen     @relation(fields: [kitchenId], references: [id])
-  payment   PaymentType
-  status    UserStatus
-
-  @@id([userId, kitchenId])
+  type         KitchenType
+  payment      PaymentType
+  Review       Review[]
+  reservations Reservation[]
+  userId       String
 }
 
 model Review {
@@ -92,11 +96,6 @@ model Review {
   kitchenId String
 
   @@id([userId, kitchenId])
-}
-
-enum UserStatus {
-  HOST
-  CHEF
 }
 
 enum PaymentType {
