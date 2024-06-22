@@ -13,6 +13,7 @@ export const kitchenSchema = z.object({
   payment: z.nativeEnum(PaymentType)
 })
 
+// for posts
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -23,7 +24,7 @@ export default async function handler(
   if (!kitchenSchema.safeParse(body)) res.status(500).json({
     msg: "Invalid Kitchen schema"
   })
-
+  
   const data = await prisma.kitchen.create({
     data: {
       name: body.name,
@@ -40,7 +41,5 @@ export default async function handler(
     }
   })
 
-  res.status(200).json({
-    data: data
-  })
+  res.status(200).json(data);
 }
