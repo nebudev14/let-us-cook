@@ -13,6 +13,7 @@ import { getServerSession } from "next-auth";
 import { getSession, useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
+import RegisterKitchen from "../components/register-kitchen";
 
 export default function Dashboard(
   props: InferGetServerSidePropsType<typeof getServerSideProps>
