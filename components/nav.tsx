@@ -1,10 +1,12 @@
 import { FaFire } from "react-icons/fa";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import { useRouter } from "next/router";
 
 const Nav: React.FC = () => {
+  const router = useRouter();
   return (
     <div className="flex items-center px-8 py-4 mt-4 border-2 rounded-full border-zinc-100">
-      <FaFire size={30} className="mr-4 text-green-500" />
+      <FaFire size={30} onClick={() => router.push("/dashboard")} className="mr-4 text-green-500 hover:cursor-pointer"  />
       <h1 className="mr-10 font-semibold">Lettuce Cook</h1>
       <Menu>
         <MenuButton className="inline-flex items-center gap-2 rounded-md bg-gray-800 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
