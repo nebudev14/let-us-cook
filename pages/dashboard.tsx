@@ -53,7 +53,7 @@ export default function Dashboard(
   return (
     <>
       <Nav page="find-kitchen" />
-      <RegisterButton />
+      {/* <RegisterButton /> */}
       <div className="h-screen px-10 py-6 mx-auto max-w-screen-2xl text-zinc-700">
         <h1 className="mb-6 text-xl font-bold text-green-500">My Events</h1>
 
