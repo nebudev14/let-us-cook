@@ -6,13 +6,14 @@ import {
 } from "@react-google-maps/api";
 import { useRef } from "react";
 
-const DisplayMap: React.FC = () => {
+const Map = () => {
   const container = {
     width: "100%",
     height: "100%",
   };
 
   const options = {
+    disableDefaultUI: true,
     zoomControl: true,
   };
 
@@ -21,13 +22,13 @@ const DisplayMap: React.FC = () => {
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_SECRET,
   });
 
-  const mapRef = useRef<google.maps.Map | null>(null);
+  const mapRef = useRef(null);
 
-  const onLoad = (map: google.maps.Map): void => {
+  const onLoad = (map: any) => {
     mapRef.current = map;
   };
 
-  const unMount = (): void => {
+  const unMount = () => {
     mapRef.current = null;
   };
 
@@ -36,14 +37,17 @@ const DisplayMap: React.FC = () => {
       {isLoaded ? (
         <GoogleMap
           mapContainerStyle={container}
-          zoom={12}
+          zoom={17}
           options={options}
           onLoad={onLoad}
+          center={{ lat: 40.7128, lng: -74 }}
           onUnmount={unMount}
         ></GoogleMap>
-      ) : <h1>Loading</h1>}
+      ) : (
+        <h1>Loading</h1>
+      )}
     </>
   );
 };
 
-export default DisplayMap;
+export default Map;

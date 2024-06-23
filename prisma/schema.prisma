@@ -75,14 +75,17 @@ model Reservation {
 
 model Kitchen {
   id       String   @id @default(cuid())
-  name     String
   desc     String
-  tags     String[]
+  appliances     String[]
   location String
+  photo    String
   owner    User     @relation(fields: [userId], references: [id])
+  start    DateTime
+  end      DateTime
 
   type         KitchenType
   payment      PaymentType
+  cost         Decimal
   Review       Review[]
   reservations Reservation[]
   userId       String

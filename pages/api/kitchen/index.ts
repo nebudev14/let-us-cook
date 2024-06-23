@@ -6,12 +6,12 @@ import { z } from 'zod';
 import { KitchenType, PaymentType } from '@prisma/client';
 
 export const kitchenSchema = z.object({
-  name: z.string(),
   desc: z.string(),
-  tags: z.array(z.string()).optional(),
+  appliances: z.array(z.string()).optional(),
   type: z.nativeEnum(KitchenType),
   payment: z.nativeEnum(PaymentType),
-  location: z.string()
+  location: z.string(),
+  photo: z.string()
 })
 
 // for posts
@@ -28,13 +28,13 @@ export default async function handler(
 
   const data = await prisma.kitchen.create({
     data: {
-      name: body.name,
       desc: body.desc,
-      tags: body.tags,
+      appliances: body.appliances,
       type: body.type,
       payment: body.payment,
+      location: body.location,
+      photo: body.photo,
       userId: session?.user.id as string,
-      location: body.location
     }
   })
 

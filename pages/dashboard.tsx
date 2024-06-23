@@ -1,12 +1,6 @@
-import {
-  KitchenType,
-  PaymentType,
-} from "@prisma/client";
+import { KitchenType, PaymentType } from "@prisma/client";
 import axios from "axios";
-import {
-  GetServerSidePropsContext,
-  InferGetServerSidePropsType,
-} from "next";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getServerSession } from "next-auth";
 import { getSession, useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
@@ -25,25 +19,33 @@ export default function Dashboard(
 
   return (
     <div className="h-screen px-10 py-6 max-w-screen-2xl mx-auto">
+      <h1 className="mb-6 text-xl font-bold text-green-500">My Events</h1>
 
-      <h1 className="mb-6 text-xl text-green-500 font-bold">My Events</h1>
-
-      <div className="w-full flex flex-row gap-10 pb-12">
-        <div className="flex flex-col gap-1">
-          <img className="max-w-60 drop-shadow-md rounded-md" src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-          <h3 className="text-xl">Jonny's Kitchen</h3>
-          <div className="flex flex-row items-center gap-2">
-            <MapPinIcon className="size-5 text-green-500"/>
-            <p>130-50 Mulberry Avenue</p>
+      <div className="flex flex-row w-full gap-10 pb-10">
+        {props.data.map((reservation, i) => (
+          <div key={i}>
+            <div className="flex flex-col gap-1">
+              <img
+                className="rounded-md max-w-60 drop-shadow-md"
+                src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              />
+              <h3 className="text-xl">{reservation.kitchen.location}</h3>
+              <div className="flex flex-row items-center gap-2">
+                <MapPinIcon />
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <CalendarDaysIcon />
+                <p>6:00pm - 9:00pm</p>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-row items-center gap-2">
-            <CalendarDaysIcon className="size-5 text-green-500" />
-            <p>6:00pm - 9:00pm</p>
-          </div>
-        </div>
+        ))}
 
         <div className="flex flex-col gap-1">
-          <img className="max-w-60 drop-shadow-md rounded-md" src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+          <img
+            className="rounded-md max-w-60 drop-shadow-md"
+            src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          />
           <h3 className="text-xl">Jonny's Kitchen</h3>
           <div className="flex flex-row items-center gap-2">
             <MapPinIcon className="size-5 text-green-500"/>
@@ -134,15 +136,15 @@ export default function Dashboard(
           <KitchenCard />
             
           {/* {data.map((kitchen, i) => ( */}
-            {/* <div key={i} className="py-2"> */}
-              {/* <img className="max-w-60 drop-shadow-md rounded-md" src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" /> */}
-              {/* <h3 className="text-xl">{kitchen.kitchen.name}</h3> */}
-              {/* <p>location</p> */}
-              {/* <div className="flex flex-col"> */}
-                {/* for each feature */}
-                {/* <p>features</p> */}
-              {/* </div> */}
-            {/* </div> */}
+          {/* <div key={i} className="py-2"> */}
+          {/* <img className="rounded-md max-w-60 drop-shadow-md" src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" /> */}
+          {/* <h3 className="text-xl">{kitchen.kitchen.name}</h3> */}
+          {/* <p>location</p> */}
+          {/* <div className="flex flex-col"> */}
+          {/* for each feature */}
+          {/* <p>features</p> */}
+          {/* </div> */}
+          {/* </div> */}
           {/* ))} */}
         </div>
         
@@ -156,9 +158,10 @@ export default function Dashboard(
           await axios.post(`${process.env.NEXT_PUBLIC_DOMAIN}/api/kitchen`, {
             name: "Boston Kitchen",
             desc: "IT'S A BIG KITCHEN. BIG GUY. REALLY COOL",
-            tags: ["Microwave", "Rice Cooker", "Oven", "Yes"],
+            appliances: ["Microwave", "Rice Cooker", "Oven", "Yes"],
             type: KitchenType.PRIVATE,
             payment: PaymentType.FOOD,
+            location: "155 Bay St Road, Boston MA",
           });
         }}
       >
