@@ -79,7 +79,7 @@ export default function ViewKitchen(
                 </div>
               </div>
             </div>
-            <div className="pb-6 mb-10 border-b">
+            <div className="pb-6 mb-10 ">
               <h1 className="text-zinc-500">{data?.desc}</h1>
             </div>
           </div>

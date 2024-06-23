@@ -143,29 +143,7 @@ export default function Dashboard(
               </div>
             </div>
 
-            <div className="flex flex-col mb-5">
-              <h3 className="pb-1 mb-2 text-xl border-b border-zinc-400 ">
-                Event Type
-              </h3>
-              <div className="flex flex-row items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="money"
-                  value="Money"
-                  className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
-                />
-                <label htmlFor="money">Public Event</label>
-              </div>
-              <div className="flex flex-row items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="food"
-                  value="Food"
-                  className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
-                />
-                <label htmlFor="food">Private Kitchen</label>
-              </div>
-            </div>
+      
           </div>
 
           <div className="grid grid-cols-3 max-h-[85vh] overflow-y-scroll col-span-8  styled-scrollbar">
@@ -200,7 +178,7 @@ export default function Dashboard(
           </div>
         </div>
 
-        <button
+        {/* <button
           onClick={async () => {
             await axios.post(`${process.env.NEXT_PUBLIC_DOMAIN}/api/kitchen`, {
               desc: "IT'S A BIG KITCHEN. BIG GUY. REALLY COOL",
@@ -216,7 +194,7 @@ export default function Dashboard(
           }}
         >
           bruh
-        </button>
+        </button> */}
       </div>
     </>
   );
