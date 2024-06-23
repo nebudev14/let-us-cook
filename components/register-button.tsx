@@ -12,15 +12,15 @@ const RegisterButton: React.FC = () => {
                 className="fixed flex bottom-[30px] right-[30px] z-10 flex-row gap-5 items-center p-5 bg-white border-4 border-green-500 shadow-xl rounded-xl text-green-500 hover:bg-green-500 hover:text-white transition-all"
             >
                 <span className="text-2xl text-inherit">New Kitchen</span>
-                <FaLeaf className="text-inherit text-3xl" />
+                <FaLeaf className="text-3xl text-inherit" />
             </button>
 
             {isOpen &&
                 <>
                     <div
                     onClick={() => setIsOpen(false)}
-                    className="fixed top-0 w-screen h-screen backdrop-blur-2xl z-10"></div>
-                    <RegisterKitchen closeSelf={() => setIsOpen(false)} className="transition-all" />
+                    className="fixed top-0 z-10 w-screen h-screen backdrop-blur-2xl"></div>
+                    <RegisterKitchen closeSelf={() => setIsOpen(false)} />
                 </>}
         </>
     );

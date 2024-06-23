@@ -14,6 +14,15 @@ import Nav from "../components/nav";
 import Link from "next/link";
 import { useState } from "react";
 
+export const constAppliances = [
+  "refrigerator",
+  "microwave",
+  "stove",
+  "oven",
+  "rice cooker",
+  "waffle maker",
+];
+
 export default function Dashboard(
   props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) {
@@ -80,51 +89,19 @@ export default function Dashboard(
               <h3 className="pb-1 mb-2 text-xl border-b border-zinc-400">
                 Features
               </h3>
-              <div className="flex flex-row items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="refrigerator"
-                  value="Refrigerator"
-                  className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
-                />
-                <label htmlFor="refrigerator">Refrigerator</label>
-              </div>
-              <div className="flex flex-row items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="microwave"
-                  value="Microwave"
-                  className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
-                />
-                <label htmlFor="microwave">Microwave</label>
-              </div>
-              <div className="flex flex-row items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="stove"
-                  value="Stove"
-                  className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
-                />
-                <label htmlFor="stove">Stove</label>
-              </div>
-              <div className="flex flex-row items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="oven"
-                  value="Oven"
-                  className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
-                />
-                <label htmlFor="oven">Oven</label>
-              </div>
-              <div className="flex flex-row items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="rice-cooker"
-                  value="Rice Cooker"
-                  className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
-                />
-                <label htmlFor="rice-cooker">Rice Cooker</label>
-              </div>
+              {constAppliances.map((item, i) => (
+                <div key={i} className="flex flex-row items-center gap-2">
+                  <input
+                    type="checkbox"
+                    id={item}
+                    value={item.charAt(0).toUpperCase() + item.slice(1)}
+                    className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
+                  />
+                  <label htmlFor="refrigerator">
+                    {item.charAt(0).toUpperCase() + item.slice(1)}
+                  </label>
+                </div>
+              ))}
             </div>
 
             <div className="flex flex-col mb-5">
@@ -170,27 +147,6 @@ export default function Dashboard(
             {kitchens.map((kitchen, i) => (
               <KitchenCard key={i} kitchen={kitchen} />
             ))}
-
-            {/* <KitchenCard /> */}
-            {/* <KitchenCard />
-            <KitchenCard />
-            <KitchenCard />
-            <KitchenCard />
-            <KitchenCard />
-            <KitchenCard />
-            <KitchenCard /> */}
-
-            {/* {data.map((kitchen, i) => ( */}
-            {/* <div key={i} className="py-2"> */}
-            {/* <img className="rounded-md max-w-60 drop-shadow-md" src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" /> */}
-            {/* <h3 className="text-xl">{kitchen.kitchen.name}</h3> */}
-            {/* <p>location</p> */}
-            {/* <div className="flex flex-col"> */}
-            {/* for each feature */}
-            {/* <p>features</p> */}
-            {/* </div> */}
-            {/* </div> */}
-            {/* ))} */}
           </div>
 
           <div className="flex flex-col col-span-3 row-span-3 border-2 border-green-300 rounded-lg">

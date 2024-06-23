@@ -3,9 +3,11 @@ import { KitchenType } from "@prisma/client";
 import axios from "axios";
 import React, { FormEventHandler, useRef, useState } from "react";
 
-const RegisterKitchen = ({ closeSelf }) => {
+const RegisterKitchen: React.FC<{ closeSelf: () => void }> = ({
+  closeSelf,
+}) => {
   const [description, setDescription] = useState("");
-  const appliances = useRef(null);
+  const [appliances, setAppliances] = useState<string[]>([]);
 
   const photo = useRef(null);
   const [country, setCountry] = useState("");
@@ -19,6 +21,7 @@ const RegisterKitchen = ({ closeSelf }) => {
 
   const [price, setPrice] = useState("");
   const [fanumTax, setFanumTax] = useState("");
+
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -106,6 +109,32 @@ const RegisterKitchen = ({ closeSelf }) => {
                     PNG, JPG, GIF up to 10MB
                   </p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="pb-12 border-b border-gray-900/10">
+          <h2 className="text-base font-semibold leading-7 text-gray-900">
+            Appliances
+          </h2>
+          <p className="mt-1 mb-2 text-sm leading-6 text-gray-600">
+            Please check off all appliances your kitchen is offering.
+          </p>
+          <div className="">
+            <div className="flex flex-row items-center">
+              {" "}
+              <input
+                id="refrigerator"
+                name="Refrigerator"
+                type="checkbox"
+                onChange={(e) => console.log(e.target.checked)}
+                className="w-4 h-4 mr-2 text-green-500 border-gray-300 rounded focus:ring-green-500"
+              />
+              <div className="text-sm leading-6">
+                <label htmlFor="refrigerator" className="font-medium text-gray-900">
+                  Refrigerator
+                </label>
               </div>
             </div>
           </div>
