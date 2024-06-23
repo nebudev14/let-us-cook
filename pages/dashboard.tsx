@@ -11,6 +11,7 @@ import KitchenCard from "../components/kitchen-card";
 import { MapPinIcon, CalendarDaysIcon } from "@heroicons/react/24/solid";
 import RegisterButton from "../components/register-button";
 import Nav from "../components/nav";
+import Link from "next/link";
 
 export default function Dashboard(
   props: InferGetServerSidePropsType<typeof getServerSideProps>
@@ -26,11 +27,11 @@ export default function Dashboard(
         <h1 className="mb-6 text-xl font-bold text-green-500">My Events</h1>
 
         <div className="flex flex-row w-full gap-10 pb-10">
-          {props.reservations.length === 0 ? (
+          {reservations.length === 0 ? (
             <h1>You haven't reserved any kitchens yet. Let's change that!</h1>
           ) : null}
-          {props.reservations.map((reservation, i) => (
-            <div key={i}>
+          {reservations.map((reservation, i) => (
+            <Link href={`/kitchen/${reservation.kitchenId}`} passHref key={i}>
               <div className="flex flex-col gap-1">
                 <img
                   className="rounded-md max-w-60 drop-shadow-md"
@@ -39,14 +40,22 @@ export default function Dashboard(
 
                 <div className="flex flex-row items-center gap-2 mt-2">
                   <MapPinIcon className="text-green-500 size-5" />
-                  <h3 className="text-base">{reservation.kitchen.location}</h3>
+                  <h3 className="text-base">
+                    {reservation.kitchen.location.length < 23
+                      ? reservation.kitchen.location
+                      : reservation.kitchen.location.slice(0, 23) + "..."}
+                  </h3>
                 </div>
                 <div className="flex flex-row items-center gap-2">
                   <CalendarDaysIcon className="text-green-500 size-5" />
-                  <p>6:00pm - 9:00pm</p>
+                  <p>
+                    {" "}
+                    {reservation.kitchen.start.toLocaleDateString()} -{" "}
+                    {reservation.kitchen.end.toLocaleDateString()}
+                  </p>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
@@ -142,8 +151,6 @@ export default function Dashboard(
                 <label htmlFor="food">Food</label>
               </div>
             </div>
-
-      
           </div>
 
           <div className="grid grid-cols-3 max-h-[85vh] overflow-y-scroll col-span-8  styled-scrollbar">

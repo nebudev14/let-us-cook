@@ -28,7 +28,7 @@ const RegisterKitchen: React.FC = ({ closeSelf }) => {
     await axios.post(`${process.env.NEXT_PUBLIC_DOMAIN}/api/kitchen`, {
       desc: description.current,
       // appliances: [],
-      location: `${address.current} ${city.current} ${state.current} ${zip.current} ${country.current}`,
+      location: `${address.current} ${city.current} ${state.current} ${zip.current}`,
       photo: "https://st.hzcdn.com/simgs/pictures/kitchens/kitchens-michael-alan-kaskel-img~0d511d8e0e77ab3a_14-6521-1-7aacee2.jpg",
       start: new Date(start.current).toISOString(),
       end: new Date(end.current).toISOString(),
