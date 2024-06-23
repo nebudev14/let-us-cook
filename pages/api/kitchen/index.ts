@@ -39,9 +39,6 @@ export default async function handler(
       type: body.type,
       cost: body.cost,
       userId: session?.user.id as string,
-      start: body.start,
-      end: body.end,
-      cost: body.cost
     }
   });
 
