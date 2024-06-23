@@ -1,4 +1,4 @@
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
+import { CalendarIcon, PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import React from 'react';
 
 const RegisterKitchen: React.FC = () => {
@@ -8,11 +8,11 @@ const RegisterKitchen: React.FC = () => {
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900">Kitchen</h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
-            Register your kitchen so that you can host it to other cheffs!
+            Register your kitchen so that you can host it to other chefs!
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            
+
             <div className="col-span-full">
               <label htmlFor="about" className="block text-sm font-medium leading-6 text-gray-900">
                 Description
@@ -58,7 +58,7 @@ const RegisterKitchen: React.FC = () => {
           <p className="mt-1 text-sm leading-6 text-gray-600">Provide the address that your kitchen is at.</p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            
+
             <div className="sm:col-span-3">
               <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
                 Country
@@ -140,72 +140,77 @@ const RegisterKitchen: React.FC = () => {
         </div>
 
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">Payment</h2>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
-            Chose how you want to be paid. Hungry? You can also ask for food!
-          </p>
+          <h2 className="text-base font-semibold leading-7 text-gray-900">Availability</h2>
+          <p className="mt-1 text-sm leading-6 text-gray-600">When are you willing to host your kitchen?</p>
+
+          <div className="mt-10 space-y-10"></div>
 
           <div className="mt-10 space-y-10">
-            <fieldset>
-              <legend className="text-sm font-semibold leading-6 text-gray-900">By Email</legend>
-              <div className="mt-6 space-y-6">
-                <div className="relative flex gap-x-3">
-                  <div className="flex h-6 items-center">
-                    <input
-                      id="comments"
-                      name="comments"
-                      type="checkbox"
-                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                    />
-                  </div>
-                  <div className="text-sm leading-6">
-                    <label htmlFor="comments" className="font-medium text-gray-900">
-                      Hungry?
-                    </label>
-                    <p className="text-gray-500">You can also ask for food!</p>
-                  </div>
+
+          <div className="sm:col-span-2">
+            <label htmlFor="start time" className="block text-sm font-medium leading-6 text-gray-900">
+              Start Date
+            </label>
+
+            <div className="flex mt-2 rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-xs ">
+              <input type="datetime-local" className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm" placeholder="Select date" />
+            </div>
+          </div>
+
+          <div className="sm:col-span-2">
+            <label htmlFor="start time" className="block text-sm font-medium leading-6 text-gray-900">
+              End Date
+            </label>
+
+            <div className="flex mt-2 rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-xs ">
+              <input type="datetime-local" className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm" placeholder="Select date" />
+            </div>
+          </div>
+        </div>
+
+        </div>
+
+        <div className="border-b border-gray-900/10 pb-12">
+          <h2 className="text-base font-semibold leading-7 text-gray-900">Payment</h2>
+          <p className="mt-1 text-sm leading-6 text-gray-600">Hungry? You can ask the chef for some food!</p>
+
+          <div className="mt-10 space-y-10">
+
+
+            <div className="mt-2">
+              <label htmlFor="price" className="block text-sm font-medium leading-6 text-gray-900">
+                Price
+              </label>
+              <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-xs">
+                <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">$</span>
+                <input
+                  type="number"
+                  name="cost"
+                  id="cost"
+                  className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                  placeholder="0.00"
+                />
+              </div>
+            </div>
+
+            <div className="mt-6 space-y-6">
+              <div className="relative flex gap-x-3">
+                <div className="flex h-6 items-center">
+                  <input
+                    id="comments"
+                    name="comments"
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  />
+                </div>
+                <div className="text-sm leading-6">
+                  <label htmlFor="comments" className="font-medium text-gray-900">
+                    Fanum Tax
+                  </label>
+                  <p className="text-gray-500">Would you like to recieve a portion of the food that is cooked in your kitchen?</p>
                 </div>
               </div>
-            </fieldset>
-            {/* <fieldset>
-              <legend className="text-sm font-semibold leading-6 text-gray-900">Push Notifications</legend>
-              <p className="mt-1 text-sm leading-6 text-gray-600">These are delivered via SMS to your mobile phone.</p>
-              <div className="mt-6 space-y-6">
-                <div className="flex items-center gap-x-3">
-                  <input
-                    id="push-everything"
-                    name="push-notifications"
-                    type="radio"
-                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                  />
-                  <label htmlFor="push-everything" className="block text-sm font-medium leading-6 text-gray-900">
-                    Everything
-                  </label>
-                </div>
-                <div className="flex items-center gap-x-3">
-                  <input
-                    id="push-email"
-                    name="push-notifications"
-                    type="radio"
-                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                  />
-                  <label htmlFor="push-email" className="block text-sm font-medium leading-6 text-gray-900">
-                    Same as email
-                  </label>
-                </div>
-                <div className="flex items-center gap-x-3">
-                  <input
-                    id="push-nothing"
-                    name="push-notifications"
-                    type="radio"
-                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                  />
-                  <label htmlFor="push-nothing" className="block text-sm font-medium leading-6 text-gray-900">
-                    No push notifications
-                  </label>
-                </div>
-              </div>
-            </fieldset> */}
+            </div>
           </div>
         </div>
       </div>

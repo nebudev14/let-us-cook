@@ -11,7 +11,10 @@ export const kitchenSchema = z.object({
   type: z.nativeEnum(KitchenType),
   payment: z.nativeEnum(PaymentType),
   location: z.string(),
-  photo: z.string()
+  photo: z.string(),
+  start: z.date(),
+  end: z.date(),
+  cost: z.number()
 })
 
 // for posts
@@ -35,6 +38,9 @@ export default async function handler(
       location: body.location,
       photo: body.photo,
       userId: session?.user.id as string,
+      start: body.start,
+      end: body.end,
+      cost: body.cost
     }
   })
 
