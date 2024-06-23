@@ -68,6 +68,7 @@ model Reservation {
   kitchenId String
   user      User     @relation(fields: [userId], references: [id])
   kitchen   Kitchen  @relation(fields: [kitchenId], references: [id])
+  approved  Boolean
 
   @@id([userId, kitchenId])
 }
@@ -75,7 +76,7 @@ model Reservation {
 model Kitchen {
   id       String   @id @default(cuid())
   desc     String
-  tags     String[]
+  appliances     String[]
   location String
   photo    String
   owner    User     @relation(fields: [userId], references: [id])
