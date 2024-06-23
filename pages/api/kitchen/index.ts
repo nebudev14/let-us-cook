@@ -4,6 +4,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '../auth/[...nextauth]';
 import { z } from 'zod';
 import { KitchenType } from '@prisma/client';
+import { geocode, OutputFormat, RequestType } from 'react-geocode';
 
 export const kitchenSchema = z.object({
   desc: z.string(),
@@ -27,6 +28,16 @@ export default async function handler(
   if (!kitchenSchema.safeParse(body)) res.status(500).json({
     msg: "Invalid Kitchen schema"
   });
+
+  const latlng = geocode(RequestType.ADDRESS, body.location, {
+    key: process.env.NEXT_PUBLIC_GOOGLE_MAP_SECRET,
+    outputFormat: OutputFormat.JSON
+    
+  },
+  ).then(({ results }) => {
+    console.log(results[0].geometry.location)
+  });
+  // console.log(latlng)
 
   const data = await prisma.kitchen.create({
     data: {

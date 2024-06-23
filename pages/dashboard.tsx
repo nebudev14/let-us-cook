@@ -12,12 +12,25 @@ import { MapPinIcon, CalendarDaysIcon } from "@heroicons/react/24/solid";
 import RegisterButton from "../components/register-button";
 import Nav from "../components/nav";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Dashboard(
   props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) {
   const { data: session } = useSession();
   const { reservations, kitchens } = props;
+
+  const [location, setLocation] = useState<{ lat: number; lng: number }>({
+    lat: 0,
+    lng: 0,
+  });
+
+  navigator.geolocation?.getCurrentPosition(
+    ({ coords: { latitude: lat, longitude: lng } }) => {
+      const pos = { lat, lng };
+      setLocation(pos);
+    }
+  );
 
   return (
     <>
@@ -181,7 +194,7 @@ export default function Dashboard(
           </div>
 
           <div className="flex flex-col col-span-3 row-span-3 border-2 border-green-300 rounded-lg">
-            <DisplayMap />
+            <DisplayMap center={location} />
           </div>
         </div>
 

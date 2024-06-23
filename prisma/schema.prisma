@@ -80,8 +80,11 @@ model Kitchen {
   location String
   photo    String
   owner    User     @relation(fields: [userId], references: [id])
-  start    DateTime
+  start    DateTime 
   end      DateTime
+
+  lat Float @default(0)
+  lng Float @default(0)
 
   type         KitchenType
   cost         Float

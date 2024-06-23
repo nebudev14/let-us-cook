@@ -6,7 +6,12 @@ import {
 } from "@react-google-maps/api";
 import { useRef } from "react";
 
-const Map = () => {
+const DisplayMap: React.FC<{
+  center: {
+    lat: number;
+    lng: number;
+  }
+}> = ({ center }) => {
   const container = {
     width: "100%",
     height: "100%",
@@ -40,7 +45,7 @@ const Map = () => {
           zoom={17}
           options={options}
           onLoad={onLoad}
-          center={{ lat: 40.7128, lng: -74 }}
+          center={center}
           onUnmount={unMount}
         ></GoogleMap>
       ) : (
@@ -50,4 +55,4 @@ const Map = () => {
   );
 };
 
-export default Map;
+export default DisplayMap;
