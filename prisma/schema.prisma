@@ -91,7 +91,7 @@ model Kitchen {
 }
 
 model Review {
-  rating    Decimal
+  rating    Int
   comment   String
   user      User    @relation(fields: [userId], references: [id])
   kitchen   Kitchen @relation(fields: [kitchenId], references: [id])
