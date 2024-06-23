@@ -6,9 +6,9 @@ import Nav from "../components/nav";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider session={pageProps.session}>
-      <div className="flex items-center justify-center w-full">
+      {/* <div className="flex items-center justify-center w-full">
         <Nav />
-      </div>
+      </div> */}
       <Component {...pageProps} />
     </SessionProvider>
   );
