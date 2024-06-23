@@ -34,6 +34,9 @@ export default function ViewKitchen(
             {data?.location}
           </h1>
         </div>
+        <div className="flex items-center ">
+         
+        </div>
 
         <div className="mb-8">
           {data?.appliances.map((appliance, i) => (
@@ -189,6 +192,9 @@ export default function ViewKitchen(
               {/* <div className="flex items-center">
                 <h1>${data?.cost} * {endDate?.getUTCMilliseconds()}</h1>
               </div> */}
+            </div>
+            <div className="px-8 py-5 mt-4 border shadow-md rounded-xl">
+              <h1>hi</h1>
             </div>
           </div>
         </div>

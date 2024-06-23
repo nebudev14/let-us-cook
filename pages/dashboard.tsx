@@ -12,7 +12,7 @@ import { MapPinIcon, CalendarDaysIcon } from "@heroicons/react/24/solid";
 import RegisterButton from "../components/register-button";
 import Nav from "../components/nav";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const constAppliances = [
   "refrigerator",
@@ -34,12 +34,14 @@ export default function Dashboard(
     lng: 0,
   });
 
-  navigator.geolocation?.getCurrentPosition(
-    ({ coords: { latitude: lat, longitude: lng } }) => {
-      const pos = { lat, lng };
-      setLocation(pos);
-    }
-  );
+  useEffect(() => {
+    navigator.geolocation?.getCurrentPosition(
+      ({ coords: { latitude: lat, longitude: lng } }) => {
+        const pos = { lat, lng };
+        setLocation(pos);
+      }
+    );
+  });
 
   return (
     <>
