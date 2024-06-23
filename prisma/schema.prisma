@@ -77,7 +77,7 @@ model Kitchen {
   id       String   @id @default(cuid())
   name     String
   desc     String
-  tags     String[]
+  appliances     String[]
   location String
   owner    User     @relation(fields: [userId], references: [id])
 
