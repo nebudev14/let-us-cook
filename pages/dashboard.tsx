@@ -60,9 +60,11 @@ export default function Dashboard(
       <h1 className="mb-6 text-xl text-green-500 font-bold">Find Kitchens</h1>
 
       <div className="grid grid-flow-col grid-cols-12 gap-5 min-h-[75vh] max-h-screen">
-        <div className="row-span-3 col-span-2 flex flex-col border-r-2 border-zinc-700 pr-2">
+        <div className="row-span-3 col-span-2 flex flex-col border-r border-zinc-300 pr-6">
           <div className="flex flex-col mb-5">
-            <h3 className="text-xl border-b border-zinc-700 mb-2">Features</h3>
+            <h3 className="text-xl border-b border-zinc-400 mb-2 pb-1">
+              Features
+            </h3>
             <div className="flex flex-row items-center gap-2">
               <input
                 type="checkbox"
@@ -111,7 +113,9 @@ export default function Dashboard(
           </div>
 
           <div className="flex flex-col mb-5">
-            <h3 className="text-xl border-b border-zinc-700 mb-2">Location</h3>
+            <h3 className="text-xl border-b border-zinc-400 mb-2 pb-1">
+              Location
+            </h3>
             <div className="flex flex-row items-center gap-2">
               <MapPinIcon className="size-5 text-green-500" />
               <input
@@ -123,7 +127,7 @@ export default function Dashboard(
           </div>
 
           <div className="flex flex-col mb-5">
-            <h3 className="text-xl border-b border-zinc-700 mb-2">
+            <h3 className="text-xl border-b border-zinc-400 mb-2 pb-1">
               Payment Type
             </h3>
             <div className="flex flex-row items-center gap-2">
@@ -147,7 +151,7 @@ export default function Dashboard(
           </div>
 
           <div className="flex flex-col mb-5">
-            <h3 className="text-xl border-b border-zinc-700 mb-2  ">
+            <h3 className="text-xl border-b border-zinc-400 mb-2 pb-1  ">
               Event Type
             </h3>
             <div className="flex flex-row items-center gap-2">
@@ -175,7 +179,6 @@ export default function Dashboard(
           {kitchens.map((kitchen, i) => (
             <KitchenCard key={i} kitchen={kitchen} />
           ))}
-  
 
           {/* <KitchenCard /> */}
           {/* <KitchenCard />
