@@ -84,9 +84,8 @@ model Kitchen {
   end      DateTime
 
   type         KitchenType
-  payment      PaymentType
   cost         Float
-  Review       Review[]
+  review       Review[]
   reservations Reservation[]
   userId       String
 }
@@ -100,11 +99,6 @@ model Review {
   kitchenId String
 
   @@id([userId, kitchenId])
-}
-
-enum PaymentType {
-  MONEY
-  FOOD
 }
 
 enum KitchenType {
