@@ -7,7 +7,7 @@ import { KitchenType, PaymentType } from '@prisma/client';
 
 export const kitchenSchema = z.object({
   desc: z.string(),
-  tags: z.array(z.string()).optional(),
+  appliances: z.array(z.string()).optional(),
   type: z.nativeEnum(KitchenType),
   payment: z.nativeEnum(PaymentType),
   location: z.string(),
@@ -29,7 +29,7 @@ export default async function handler(
   const data = await prisma.kitchen.create({
     data: {
       desc: body.desc,
-      tags: body.tags,
+      appliances: body.appliances,
       type: body.type,
       payment: body.payment,
       location: body.location,
