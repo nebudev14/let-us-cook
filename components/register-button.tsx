@@ -17,7 +17,9 @@ const RegisterButton: React.FC = () => {
 
             {isOpen &&
                 <>
-                    <div className="fixed top-0 w-screen h-screen backdrop-blur-2xl z-10"></div>
+                    <div
+                    onClick={() => setIsOpen(false)}
+                    className="fixed top-0 w-screen h-screen backdrop-blur-2xl z-10"></div>
                     <RegisterKitchen closeSelf={() => setIsOpen(false)} className="transition-all" />
                 </>}
         </>
