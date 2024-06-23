@@ -1,4 +1,4 @@
-import { KitchenType, PaymentType } from "@prisma/client";
+import { KitchenType } from "@prisma/client";
 import axios from "axios";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getServerSession } from "next-auth";
@@ -17,7 +17,7 @@ export default function Dashboard(
   const { reservations, kitchens } = props;
 
   return (
-    <div className="h-screen px-10 py-6 max-w-screen-2xl mx-auto text-zinc-700">
+    <div className="h-screen px-10 py-6 mx-auto max-w-screen-2xl text-zinc-700">
       <h1 className="mb-6 text-xl font-bold text-green-500">My Events</h1>
 
       <div className="flex flex-row w-full gap-10 pb-10">
@@ -47,22 +47,22 @@ export default function Dashboard(
           />
           <h3 className="text-xl">Jonny's Kitchen</h3>
           <div className="flex flex-row items-center gap-2">
-            <MapPinIcon className="size-5 text-green-500" />
+            <MapPinIcon className="text-green-500 size-5" />
             <p>130-50 Mulberry Avenue</p>
           </div>
           <div className="flex flex-row items-center gap-2">
-            <CalendarDaysIcon className="size-5 text-green-500" />
+            <CalendarDaysIcon className="text-green-500 size-5" />
             <p>6:00pm - 9:00pm</p>
           </div>
         </div>
       </div>
 
-      <h1 className="mb-6 text-xl text-green-500 font-bold">Find Kitchens</h1>
+      <h1 className="mb-6 text-xl font-bold text-green-500">Find Kitchens</h1>
 
       <div className="grid grid-flow-col grid-cols-12 gap-5 min-h-[75vh] max-h-screen">
-        <div className="row-span-3 col-span-2 flex flex-col border-r border-zinc-300 pr-6">
+        <div className="flex flex-col col-span-2 row-span-3 pr-6 border-r border-zinc-300">
           <div className="flex flex-col mb-5">
-            <h3 className="text-xl border-b border-zinc-400 mb-2 pb-1">
+            <h3 className="pb-1 mb-2 text-xl border-b border-zinc-400">
               Features
             </h3>
             <div className="flex flex-row items-center gap-2">
@@ -113,21 +113,21 @@ export default function Dashboard(
           </div>
 
           <div className="flex flex-col mb-5">
-            <h3 className="text-xl border-b border-zinc-400 mb-2 pb-1">
+            <h3 className="pb-1 mb-2 text-xl border-b border-zinc-400">
               Location
             </h3>
             <div className="flex flex-row items-center gap-2">
-              <MapPinIcon className="size-5 text-green-500" />
+              <MapPinIcon className="text-green-500 size-5" />
               <input
                 type="number"
-                className="text-green-500 text-base p-px w-12 border-0 border-b"
+                className="w-12 p-px text-base text-green-500 border-0 border-b"
               />
               <p className="text-green-500">miles away</p>
             </div>
           </div>
 
           <div className="flex flex-col mb-5">
-            <h3 className="text-xl border-b border-zinc-400 mb-2 pb-1">
+            <h3 className="pb-1 mb-2 text-xl border-b border-zinc-400">
               Payment Type
             </h3>
             <div className="flex flex-row items-center gap-2">
@@ -151,7 +151,7 @@ export default function Dashboard(
           </div>
 
           <div className="flex flex-col mb-5">
-            <h3 className="text-xl border-b border-zinc-400 mb-2 pb-1  ">
+            <h3 className="pb-1 mb-2 text-xl border-b border-zinc-400 ">
               Event Type
             </h3>
             <div className="flex flex-row items-center gap-2">
@@ -202,7 +202,7 @@ export default function Dashboard(
           {/* ))} */}
         </div>
 
-        <div className="row-span-3 col-span-3 flex flex-col border-2 border-green-300 rounded-lg">
+        <div className="flex flex-col col-span-3 row-span-3 border-2 border-green-300 rounded-lg">
           <DisplayMap />
         </div>
       </div>
@@ -213,7 +213,6 @@ export default function Dashboard(
             desc: "IT'S A BIG KITCHEN. BIG GUY. REALLY COOL",
             appliances: ["Microwave", "Rice Cooker", "Oven", "Yes"],
             type: KitchenType.PRIVATE,
-            payment: PaymentType.FOOD,
             location: "155 Bay St Road, Boston MA",
             photo:
               "https://st.hzcdn.com/simgs/pictures/kitchens/kitchens-michael-alan-kaskel-img~0d511d8e0e77ab3a_14-6521-1-7aacee2.jpg",
