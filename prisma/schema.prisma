@@ -84,7 +84,7 @@ model Kitchen {
   end      DateTime
 
   type         KitchenType
-  cost         Decimal
+  cost         Float
   review       Review[]
   reservations Reservation[]
   userId       String

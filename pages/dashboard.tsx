@@ -9,6 +9,7 @@ import DisplayMap from "../components/map";
 import RegisterKitchen from "../components/register-kitchen";
 import KitchenCard from "../components/kitchen-card";
 import { MapPinIcon, CalendarDaysIcon } from "@heroicons/react/24/solid";
+import RegisterButton from "../components/register-button";
 
 export default function Dashboard(
   props: InferGetServerSidePropsType<typeof getServerSideProps>
@@ -17,6 +18,8 @@ export default function Dashboard(
   const { reservations, kitchens } = props;
 
   return (
+    <>
+      <RegisterButton />
     <div className="h-screen px-10 py-6 max-w-screen-2xl mx-auto text-zinc-700">
       <h1 className="mb-6 text-xl font-bold text-green-500">My Events</h1>
 
@@ -226,6 +229,7 @@ export default function Dashboard(
         bruh
       </button>
     </div>
+    </>
   );
 }
 
