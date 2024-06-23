@@ -34,6 +34,9 @@ export default function Dashboard(
     lng: 0,
   });
 
+  const [features, setFeatures] = useState<string[]>([]);
+  console.log(features);
+
   try {
     if (typeof window !== "undefined") {
       navigator.geolocation?.getCurrentPosition(
@@ -100,6 +103,13 @@ export default function Dashboard(
                   <input
                     type="checkbox"
                     id={item}
+                    onChange={(e) => {
+                      e.target.checked
+                        ? setFeatures([...features, e.target.value])
+                        : setFeatures(
+                            features.filter((item) => item !== e.target.value)
+                          );
+                    }}
                     value={item.charAt(0).toUpperCase() + item.slice(1)}
                     className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
                   />
@@ -150,9 +160,15 @@ export default function Dashboard(
           </div>
 
           <div className="grid grid-cols-3 max-h-[85vh] overflow-y-scroll col-span-8  styled-scrollbar">
-            {kitchens.map((kitchen, i) => (
-              <KitchenCard key={i} kitchen={kitchen} />
-            ))}
+            {features.length == 0
+              ? kitchens.map((kitchen, i) => (
+                  <KitchenCard key={i} kitchen={kitchen} />
+                ))
+              : kitchens
+                  .filter((k) => k.appliances.some((r) => features.includes(r)))
+                  .map((kitchen, i) => (
+                    <KitchenCard key={i} kitchen={kitchen} />
+                  ))}
           </div>
 
           <div className="flex flex-col col-span-3 row-span-3 border-2 border-green-300 rounded-lg">
