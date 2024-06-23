@@ -131,12 +131,12 @@ export default function Dashboard(
       <button
         onClick={async () => {
           await axios.post(`${process.env.NEXT_PUBLIC_DOMAIN}/api/kitchen`, {
-            name: "Boston Kitchen",
             desc: "IT'S A BIG KITCHEN. BIG GUY. REALLY COOL",
             appliances: ["Microwave", "Rice Cooker", "Oven", "Yes"],
             type: KitchenType.PRIVATE,
             payment: PaymentType.FOOD,
             location: "155 Bay St Road, Boston MA",
+            photo: "https://st.hzcdn.com/simgs/pictures/kitchens/kitchens-michael-alan-kaskel-img~0d511d8e0e77ab3a_14-6521-1-7aacee2.jpg"
           });
         }}
       >
