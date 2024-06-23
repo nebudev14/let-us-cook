@@ -51,7 +51,12 @@ export default function ViewKitchen(
               src={data?.photo}
             />
           </div>
-          <DisplayMap />
+          <DisplayMap
+            center={{
+              lat: data?.lat as number,
+              lng: data?.lng as number,
+            }}
+          />
         </div>
         <div className="grid grid-cols-5 gap-12">
           <div className="col-span-3 px-4">
@@ -137,11 +142,7 @@ export default function ViewKitchen(
                       readOnly={reserved!.length !== 0}
                       value={
                         reserved!.length !== 0
-                          ? reserved
-                              ?.at(0)
-                              ?.end.toISOString()
-                              .split(".")
-                              .at(0)
+                          ? reserved?.at(0)?.end.toISOString().split(".").at(0)
                           : endDate?.toISOString().split(".").at(0)
                       }
                     />
