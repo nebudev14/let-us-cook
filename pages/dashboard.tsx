@@ -2,7 +2,7 @@ import { KitchenType } from "@prisma/client";
 import axios from "axios";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getServerSession } from "next-auth";
-import { getSession, useSession } from "next-auth/react";
+import { getSession, signOut, useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import DisplayMap from "../components/map";
@@ -176,23 +176,11 @@ export default function Dashboard(
           </div>
         </div>
 
-        {/* <button
-          onClick={async () => {
-            await axios.post(`${process.env.NEXT_PUBLIC_DOMAIN}/api/kitchen`, {
-              desc: "IT'S A BIG KITCHEN. BIG GUY. REALLY COOL",
-              appliances: ["Microwave", "Rice Cooker", "Oven", "Yes"],
-              type: KitchenType.PRIVATE,
-              location: "155 Bay St Road, Boston MA",
-              photo:
-                "https://st.hzcdn.com/simgs/pictures/kitchens/kitchens-michael-alan-kaskel-img~0d511d8e0e77ab3a_14-6521-1-7aacee2.jpg",
-              start: new Date(),
-              end: new Date(),
-              cost: 2,
-            });
-          }}
+        <button
+          onClick={() => signOut()} className="text-white"
         >
           bruh
-        </button> */}
+        </button>
       </div>
     </>
   );
