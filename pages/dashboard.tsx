@@ -75,7 +75,7 @@ export default function Dashboard(
                 type="checkbox"
                 id="refrigerator"
                 value="Refrigerator"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500"
+                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
               />
               <label htmlFor="refrigerator">Refrigerator</label>
             </div>
@@ -84,7 +84,7 @@ export default function Dashboard(
                 type="checkbox"
                 id="microwave"
                 value="Microwave"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500"
+                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
               />
               <label htmlFor="microwave">Microwave</label>
             </div>
@@ -93,7 +93,7 @@ export default function Dashboard(
                 type="checkbox"
                 id="stove"
                 value="Stove"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500"
+                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
               />
               <label htmlFor="stove">Stove</label>
             </div>
@@ -102,7 +102,7 @@ export default function Dashboard(
                 type="checkbox"
                 id="oven"
                 value="Oven"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500"
+                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
               />
               <label htmlFor="oven">Oven</label>
             </div>
@@ -111,7 +111,7 @@ export default function Dashboard(
                 type="checkbox"
                 id="rice-cooker"
                 value="Rice Cooker"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500"
+                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
               />
               <label htmlFor="rice-cooker">Rice Cooker</label>
             </div>
@@ -140,7 +140,7 @@ export default function Dashboard(
                 type="checkbox"
                 id="money"
                 value="Money"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500"
+                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
               />
               <label htmlFor="money">Money</label>
             </div>
@@ -149,7 +149,7 @@ export default function Dashboard(
                 type="checkbox"
                 id="food"
                 value="Food"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500"
+                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
               />
               <label htmlFor="food">Food</label>
             </div>
@@ -164,7 +164,7 @@ export default function Dashboard(
                 type="checkbox"
                 id="money"
                 value="Money"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500"
+                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
               />
               <label htmlFor="money">Public Event</label>
             </div>
@@ -173,7 +173,7 @@ export default function Dashboard(
                 type="checkbox"
                 id="food"
                 value="Food"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500"
+                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
               />
               <label htmlFor="food">Private Kitchen</label>
             </div>

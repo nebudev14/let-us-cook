@@ -15,9 +15,9 @@ const Nav: React.FC<{
           <h1 className="mr-10 text-xl logo-font">Lettuce Cook</h1>
         </div>
         <div className="flex flex-row basis-28 justify-center items-center gap-5 grow">
-          <h2 className={page === "find-kitchen" ? "green-underlined" : "hoverable"}>Find a Kitchen</h2>
+          <h2 onClick={() => router.push("/dashboard")} className={page === "find-kitchen" ? "green-underlined" : "hoverable"}>Find a Kitchen</h2>
           <div className="h-10 border-r-2 border-green-500"></div>
-          <h2 className={page === "host-kitchen" ? "green-underlined" : "hoverable"}>Host a Kitchen</h2>
+          <h2 onClick={() => router.push("/kitchens-dashboard")} className={page === "host-kitchen" ? "green-underlined" : "hoverable"}>Host a Kitchen</h2>
         </div>
         <div className="flex flex-row basis-28 justify-end grow">
           <UserCircleIcon className="text-green-500 w-10"/>

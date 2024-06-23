@@ -1,5 +1,5 @@
 import RegisterKitchen from "../components/register-kitchen";
-import KitchensDashboard from "../components/kitchens-dashboard";
+import KitchensDashboard from "./kitchens-dashboard";
 
 export default function Test() {
     return (

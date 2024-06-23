@@ -261,7 +261,7 @@ const RegisterKitchen: React.FC = ({ closeSelf }) => {
                     type="checkbox"
                     ref={fanumTax.current}
                     onChange={ (e) => fanumTax.current = e.target.value }  
-                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                    className="h-4 w-4 rounded border-gray-300 text-green-500 focus:ring-green-500"
                   />
                 </div>
                 <div className="text-sm leading-6">
