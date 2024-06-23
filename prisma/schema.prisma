@@ -85,7 +85,7 @@ model Kitchen {
 
   type         KitchenType
   payment      PaymentType
-  cost         Decimal
+  cost         Float
   Review       Review[]
   reservations Reservation[]
   userId       String
