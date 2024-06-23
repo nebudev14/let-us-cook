@@ -9,6 +9,7 @@ import DisplayMap from "../components/map";
 import RegisterKitchen from "../components/register-kitchen";
 import KitchenCard from "../components/kitchen-card";
 import { MapPinIcon, CalendarDaysIcon } from "@heroicons/react/24/solid";
+import RegisterButton from "../components/register-button";
 import Nav from "../components/nav";
 
 export default function Dashboard(
@@ -20,7 +21,8 @@ export default function Dashboard(
   return (
     <>
       <Nav page="find-kitchen"/>
-      <div className="h-screen px-10 py-6 mx-auto max-w-screen-2xl text-zinc-700">
+      <RegisterButton />
+      <div className="h-screen px-10 py-6 max-w-screen-2xl mx-auto text-zinc-700">
         <h1 className="mb-6 text-xl font-bold text-green-500">My Events</h1>
 
         <div className="flex flex-row w-full gap-10 pb-10">

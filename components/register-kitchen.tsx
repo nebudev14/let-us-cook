@@ -3,7 +3,7 @@ import { KitchenType } from '@prisma/client';
 import axios from 'axios';
 import React, { FormEventHandler, useRef } from 'react';
 
-const RegisterKitchen: React.FC = () => {
+const RegisterKitchen: React.FC = ({ closeSelf }) => {
   const description = useRef<HTMLTextAreaElement | undefined>(null);
   const appliances = useRef(null);
 
@@ -34,11 +34,13 @@ const RegisterKitchen: React.FC = () => {
       end: new Date(end.current).toISOString(),
       type: KitchenType.PRIVATE,
       cost: price.current,
-    }).catch((e) => alert(e));
+    })
+    .catch((e) => alert(e))
+    .finally(closeSelf);
   }
 
   return (
-    <form onSubmit={handleSubmit} className="container max-w-prose p-8 mx-auto my-16 rounded-lg border-2 border-green-200 shadow-lg">
+    <form onSubmit={handleSubmit} className="absolute left-1/2 -translate-x-1/2 z-10 bg-white container max-w-prose p-8 mx-auto my-16 rounded-lg border-2 border-green-200 shadow-2xl">
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900">Kitchen</h2>
@@ -275,7 +277,12 @@ const RegisterKitchen: React.FC = () => {
       </div>
 
       <div className="mt-6 flex items-center justify-end gap-x-6">
-        <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+        <button
+        type="button"
+        className="text-sm
+        font-semibold leading-6
+        text-gray-900"
+        onClick={closeSelf}>
           Cancel
         </button>
         <button
