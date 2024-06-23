@@ -26,159 +26,147 @@ export default function Dashboard(
         <h1 className="mb-6 text-xl font-bold text-green-500">My Events</h1>
 
         <div className="flex flex-row w-full gap-10 pb-10">
+          {props.reservations.length === 0 ? (
+            <h1>You haven't reserved any kitchens yet. Let's change that!</h1>
+          ) : null}
           {props.reservations.map((reservation, i) => (
             <div key={i}>
               <div className="flex flex-col gap-1">
                 <img
                   className="rounded-md max-w-60 drop-shadow-md"
-                  src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src={reservation.kitchen.photo}
                 />
-                <h3 className="text-xl">{reservation.kitchen.location}</h3>
-                <div className="flex flex-row items-center gap-2">
-                  <MapPinIcon />
+
+                <div className="flex flex-row items-center gap-2 mt-2">
+                  <MapPinIcon className="text-green-500 size-5" />
+                  <h3 className="text-base">{reservation.kitchen.location}</h3>
                 </div>
                 <div className="flex flex-row items-center gap-2">
-                  <CalendarDaysIcon />
+                  <CalendarDaysIcon className="text-green-500 size-5" />
                   <p>6:00pm - 9:00pm</p>
                 </div>
               </div>
             </div>
           ))}
-
-          <div className="flex flex-col gap-1">
-            <img
-              className="rounded-md max-w-60 drop-shadow-md"
-              src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            />
-            <h3 className="text-xl">Jonny's Kitchen</h3>
-            <div className="flex flex-row items-center gap-2">
-              <MapPinIcon className="text-green-500 size-5" />
-              <p>130-50 Mulberry Avenue</p>
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <CalendarDaysIcon className="text-green-500 size-5" />
-              <p>6:00pm - 9:00pm</p>
-            </div>
-          </div>
         </div>
 
         <h1 className="mb-6 text-xl font-bold text-green-500">Find Kitchens</h1>
 
-      <div className="grid grid-flow-col grid-cols-12 gap-5 min-h-[75vh] max-h-screen">
-        <div className="flex flex-col col-span-2 row-span-3 pr-6 border-r border-zinc-300">
-          <div className="flex flex-col mb-5">
-            <h3 className="pb-1 mb-2 text-xl border-b border-zinc-400">
-              Features
-            </h3>
-            <div className="flex flex-row items-center gap-2">
-              <input
-                type="checkbox"
-                id="refrigerator"
-                value="Refrigerator"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
-              />
-              <label htmlFor="refrigerator">Refrigerator</label>
+        <div className="grid grid-flow-col grid-cols-12 gap-5 min-h-[75vh] max-h-screen">
+          <div className="flex flex-col col-span-2 row-span-3 pr-6 border-r border-zinc-300">
+            <div className="flex flex-col mb-5">
+              <h3 className="pb-1 mb-2 text-xl border-b border-zinc-400">
+                Features
+              </h3>
+              <div className="flex flex-row items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="refrigerator"
+                  value="Refrigerator"
+                  className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
+                />
+                <label htmlFor="refrigerator">Refrigerator</label>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="microwave"
+                  value="Microwave"
+                  className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
+                />
+                <label htmlFor="microwave">Microwave</label>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="stove"
+                  value="Stove"
+                  className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
+                />
+                <label htmlFor="stove">Stove</label>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="oven"
+                  value="Oven"
+                  className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
+                />
+                <label htmlFor="oven">Oven</label>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="rice-cooker"
+                  value="Rice Cooker"
+                  className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
+                />
+                <label htmlFor="rice-cooker">Rice Cooker</label>
+              </div>
             </div>
-            <div className="flex flex-row items-center gap-2">
-              <input
-                type="checkbox"
-                id="microwave"
-                value="Microwave"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
-              />
-              <label htmlFor="microwave">Microwave</label>
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <input
-                type="checkbox"
-                id="stove"
-                value="Stove"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
-              />
-              <label htmlFor="stove">Stove</label>
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <input
-                type="checkbox"
-                id="oven"
-                value="Oven"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
-              />
-              <label htmlFor="oven">Oven</label>
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <input
-                type="checkbox"
-                id="rice-cooker"
-                value="Rice Cooker"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
-              />
-              <label htmlFor="rice-cooker">Rice Cooker</label>
-            </div>
-          </div>
 
-          <div className="flex flex-col mb-5">
-            <h3 className="pb-1 mb-2 text-xl border-b border-zinc-400">
-              Location
-            </h3>
-            <div className="flex flex-row items-center gap-2">
-              <MapPinIcon className="text-green-500 size-5" />
-              <input
-                type="number"
-                className="w-12 p-px text-base text-green-500 border-0 border-b"
-              />
-              <p className="text-green-500">miles away</p>
+            <div className="flex flex-col mb-5">
+              <h3 className="pb-1 mb-2 text-xl border-b border-zinc-400">
+                Location
+              </h3>
+              <div className="flex flex-row items-center gap-2">
+                <MapPinIcon className="text-green-500 size-5" />
+                <input
+                  type="number"
+                  className="w-12 p-px text-base text-green-500 border-0 border-b"
+                />
+                <p className="text-green-500">miles away</p>
+              </div>
             </div>
-          </div>
 
-          <div className="flex flex-col mb-5">
-            <h3 className="pb-1 mb-2 text-xl border-b border-zinc-400">
-              Payment Type
-            </h3>
-            <div className="flex flex-row items-center gap-2">
-              <input
-                type="checkbox"
-                id="money"
-                value="Money"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
-              />
-              <label htmlFor="money">Money</label>
+            <div className="flex flex-col mb-5">
+              <h3 className="pb-1 mb-2 text-xl border-b border-zinc-400">
+                Payment Type
+              </h3>
+              <div className="flex flex-row items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="money"
+                  value="Money"
+                  className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
+                />
+                <label htmlFor="money">Money</label>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="food"
+                  value="Food"
+                  className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
+                />
+                <label htmlFor="food">Food</label>
+              </div>
             </div>
-            <div className="flex flex-row items-center gap-2">
-              <input
-                type="checkbox"
-                id="food"
-                value="Food"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
-              />
-              <label htmlFor="food">Food</label>
-            </div>
-          </div>
 
-          <div className="flex flex-col mb-5">
-            <h3 className="pb-1 mb-2 text-xl border-b border-zinc-400 ">
-              Event Type
-            </h3>
-            <div className="flex flex-row items-center gap-2">
-              <input
-                type="checkbox"
-                id="money"
-                value="Money"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
-              />
-              <label htmlFor="money">Public Event</label>
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <input
-                type="checkbox"
-                id="food"
-                value="Food"
-                className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
-              />
-              <label htmlFor="food">Private Kitchen</label>
+            <div className="flex flex-col mb-5">
+              <h3 className="pb-1 mb-2 text-xl border-b border-zinc-400 ">
+                Event Type
+              </h3>
+              <div className="flex flex-row items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="money"
+                  value="Money"
+                  className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
+                />
+                <label htmlFor="money">Public Event</label>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="food"
+                  value="Food"
+                  className="rounded-sm checked:bg-green-500 active:checked:bg-green-500 focus:checked:bg-green-500 hover:checked:bg-green-500 focus:ring-green-500"
+                />
+                <label htmlFor="food">Private Kitchen</label>
+              </div>
             </div>
           </div>
-        </div>
 
           <div className="grid grid-cols-3 max-h-[85vh] overflow-y-scroll col-span-8  styled-scrollbar">
             {kitchens.map((kitchen, i) => (
