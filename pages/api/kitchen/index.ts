@@ -15,6 +15,7 @@ export const kitchenSchema = z.object({
   end: z.string().datetime(),
   type: z.nativeEnum(KitchenType),
   cost: z.number(),
+  fanumTax: z.boolean()
 });
 
 // for posts
@@ -47,7 +48,8 @@ export default async function handler(
         cost: Number(body.cost),
         userId: session?.user.id as string,
         lat: pos.lat,
-        lng: pos.lng
+        lng: pos.lng,
+        fanumTax: body.fanumTax
       }
     });
 

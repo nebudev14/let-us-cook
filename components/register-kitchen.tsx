@@ -21,7 +21,7 @@ const RegisterKitchen: React.FC<{ closeSelf: () => void }> = ({
   const [end, setEnd] = useState("");
 
   const [price, setPrice] = useState("");
-  const [fanumTax, setFanumTax] = useState("");
+  const [fanumTax, setFanumTax] = useState<boolean>(false);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -36,6 +36,7 @@ const RegisterKitchen: React.FC<{ closeSelf: () => void }> = ({
         end: new Date(end).toISOString(),
         type: KitchenType.PRIVATE,
         cost: price,
+        fanumTax: fanumTax
       })
       .catch((e) => alert(e))
       .finally(closeSelf);
@@ -349,7 +350,7 @@ const RegisterKitchen: React.FC<{ closeSelf: () => void }> = ({
                     id="comments"
                     name="comments"
                     type="checkbox"
-                    onChange={(e) => setFanumTax(e.target!.value)}
+                    onChange={(e) => setFanumTax(e.target.checked)}
                     className="w-4 h-4 text-green-500 border-gray-300 rounded focus:ring-green-500"
                   />
                 </div>

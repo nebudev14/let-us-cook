@@ -74,17 +74,19 @@ model Reservation {
 }
 
 model Kitchen {
-  id       String   @id @default(cuid())
-  desc     String
-  appliances     String[]
-  location String
-  photo    String
-  owner    User     @relation(fields: [userId], references: [id])
-  start    DateTime 
-  end      DateTime
+  id         String   @id @default(cuid())
+  desc       String
+  appliances String[]
+  location   String
+  photo      String
+  owner      User     @relation(fields: [userId], references: [id])
+  start      DateTime
+  end        DateTime
 
   lat Float @default(0)
   lng Float @default(0)
+
+  fanumTax Boolean @default(false)
 
   type         KitchenType
   cost         Float
