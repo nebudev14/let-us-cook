@@ -1,3 +1,9 @@
+-- CreateEnum
+CREATE TYPE "PaymentType" AS ENUM ('MONEY', 'FOOD');
+
+-- CreateEnum
+CREATE TYPE "KitchenType" AS ENUM ('PUBLIC', 'PRIVATE');
+
 -- CreateTable
 CREATE TABLE "Account" (
     "id" TEXT NOT NULL,
@@ -45,6 +51,40 @@ CREATE TABLE "User" (
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Reservation" (
+    "start" TIMESTAMP(3) NOT NULL,
+    "end" TIMESTAMP(3) NOT NULL,
+    "userId" TEXT NOT NULL,
+    "kitchenId" TEXT NOT NULL,
+
+    CONSTRAINT "Reservation_pkey" PRIMARY KEY ("userId","kitchenId")
+);
+
+-- CreateTable
+CREATE TABLE "Kitchen" (
+    "id" TEXT NOT NULL,
+    "desc" TEXT NOT NULL,
+    "tags" TEXT[],
+    "location" TEXT NOT NULL,
+    "photo" TEXT NOT NULL,
+    "type" "KitchenType" NOT NULL,
+    "payment" "PaymentType" NOT NULL,
+    "userId" TEXT NOT NULL,
+
+    CONSTRAINT "Kitchen_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Review" (
+    "rating" DECIMAL(65,30) NOT NULL,
+    "comment" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "kitchenId" TEXT NOT NULL,
+
+    CONSTRAINT "Review_pkey" PRIMARY KEY ("userId","kitchenId")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Account_provider_providerAccountId_key" ON "Account"("provider", "providerAccountId");
 
@@ -65,3 +105,18 @@ ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId"
 
 -- AddForeignKey
 ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Reservation" ADD CONSTRAINT "Reservation_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Reservation" ADD CONSTRAINT "Reservation_kitchenId_fkey" FOREIGN KEY ("kitchenId") REFERENCES "Kitchen"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Kitchen" ADD CONSTRAINT "Kitchen_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Review" ADD CONSTRAINT "Review_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Review" ADD CONSTRAINT "Review_kitchenId_fkey" FOREIGN KEY ("kitchenId") REFERENCES "Kitchen"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
