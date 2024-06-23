@@ -49,7 +49,7 @@ export default async function handler(
         }
       })
       break;
-    case "DElETE":
+    case "DELETE":
       const data = await prisma.reservation.delete({
         where: {
           userId_kitchenId: {

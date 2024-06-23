@@ -8,6 +8,7 @@ import Nav from "../../components/nav";
 import { useState } from "react";
 import axios from "axios";
 import { start } from "repl";
+import { useRouter } from "next/router";
 
 export default function ViewKitchen(
   props: InferGetServerSidePropsType<typeof getServerSideProps>
@@ -15,10 +16,11 @@ export default function ViewKitchen(
   const { data: session } = useSession();
   const { data } = props;
 
-  let reserved =
-    data?.reservations.filter(
-      (reservation) => reservation.userId === session?.user.id
-    ).length !== 0;
+  const router = useRouter();
+
+  let reserved = data?.reservations.filter(
+    (reservation) => reservation.userId === session?.user.id
+  );
 
   const [startDate, setStartDate] = useState<Date | undefined>(data?.start);
   const [endDate, setEndDate] = useState<Date | undefined>(data?.end);
@@ -103,7 +105,16 @@ export default function ViewKitchen(
                       id="start-time"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
                       onChange={(e) => setStartDate(new Date(e.target!.value))}
-                      value={startDate?.toISOString().split(".").at(0)}
+                      readOnly={reserved!.length !== 0}
+                      value={
+                        reserved!.length !== 0
+                          ? reserved
+                              ?.at(0)
+                              ?.start.toISOString()
+                              .split(".")
+                              .at(0)
+                          : startDate?.toISOString().split(".").at(0)
+                      }
                     />
                   </div>
                 </div>
@@ -123,12 +134,21 @@ export default function ViewKitchen(
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
                       placeholder="Select date"
                       onChange={(e) => setEndDate(new Date(e.target!.value))}
-                      value={endDate?.toISOString().split(".").at(0)}
+                      readOnly={reserved!.length !== 0}
+                      value={
+                        reserved!.length !== 0
+                          ? reserved
+                              ?.at(0)
+                              ?.end.toISOString()
+                              .split(".")
+                              .at(0)
+                          : endDate?.toISOString().split(".").at(0)
+                      }
                     />
                   </div>
                 </div>
               </div>
-              {reserved ? (
+              {reserved!.length !== 0 ? (
                 <button
                   onClick={async () => {
                     await axios.delete(
@@ -136,8 +156,9 @@ export default function ViewKitchen(
                         data?.id as string
                       }`
                     );
+                    await router.push("/dashboard");
                   }}
-                  className="w-full px-6 py-3 mt-4 text-xl font-semibold text-white duration-150 bg-green-500 rounded-lg hover:bg-green-600 "
+                  className="w-full px-6 py-3 mt-4 text-xl font-semibold text-white duration-150 bg-red-500 rounded-lg hover:bg-red-600 "
                 >
                   Cancel Reservation
                 </button>
@@ -153,6 +174,7 @@ export default function ViewKitchen(
                         end: endDate?.toISOString(),
                       }
                     );
+                    await router.push("/dashboard");
                   }}
                   className="w-full px-6 py-3 mt-4 text-xl font-semibold text-white duration-150 bg-green-500 rounded-lg hover:bg-green-600 "
                 >
