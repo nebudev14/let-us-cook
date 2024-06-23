@@ -24,6 +24,16 @@ export default function ViewKitchen(
 
   const [startDate, setStartDate] = useState<Date | undefined>(data?.start);
   const [endDate, setEndDate] = useState<Date | undefined>(data?.end);
+  const [currRating, setCurrRating] = useState<number>(0);
+  console.log(currRating);
+
+  const avgRating =
+    data?.review.length !== 0
+      ? (data?.review.reduce(
+          (partialSum, a) => partialSum + a.rating,
+          0
+        ) as number) / (data?.review?.length as number)
+      : 0;
 
   return (
     <>
@@ -33,9 +43,6 @@ export default function ViewKitchen(
           <h1 className="mb-4 text-3xl font-semibold text-gray-900">
             {data?.location}
           </h1>
-        </div>
-        <div className="flex items-center ">
-         
         </div>
 
         <div className="mb-8">
@@ -86,6 +93,11 @@ export default function ViewKitchen(
                   <BsFillStarFill className="text-yellow-400" />
                 </div>
               </div>
+            </div>
+            <div className="flex items-center pb-6 mb-6 border-b">
+              {/* {Array.from(Array(5-currRating)).map((i) => (
+                <BsFillStarFill key={i} className="text-yellow-400" />
+              ))} */}
             </div>
             <div className="pb-6 mb-10 ">
               <h1 className="text-zinc-500">{data?.desc}</h1>
@@ -193,8 +205,38 @@ export default function ViewKitchen(
                 <h1>${data?.cost} * {endDate?.getUTCMilliseconds()}</h1>
               </div> */}
             </div>
-            <div className="px-8 py-5 mt-4 border shadow-md rounded-xl">
-              <h1>hi</h1>
+            <div className="px-8 py-5 mt-6 border shadow-md rounded-xl">
+              <h1 className="mb-1 text-3xl font-semibold ">
+                Share your feedback!
+              </h1>
+              <h1 className="mb-4 text-lg text-gray-600">
+                We'd love to hear your thoughts.
+              </h1>
+              <textarea
+                id="about"
+                name="about"
+                rows={6}
+                className="block w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-500 sm:text-sm sm:leading-6"
+              />
+
+              <div className="flex items-center mt-4">
+                <div className="flex items-center mr-auto">
+                  {Array.from(Array(5)).map((x, i) => (
+                    <BsFillStarFill
+                      onClick={() => setCurrRating(i + 1)}
+                      size={20}
+                      key={i}
+                      className={`mr-1 hover:cursor-pointer ${
+                        i < currRating ? "text-yellow-400" : "text-gray-400"
+                      }`}
+                    />
+                  ))}
+                </div>
+                <button className="px-3 py-1 text-lg font-semibold text-white bg-green-500 rounded-lg">Send</button>
+              </div>
+              {/* <div className="flex items-center">
+                <h1>${data?.cost} * {endDate?.getUTCMilliseconds()}</h1>
+              </div> */}
             </div>
           </div>
         </div>
