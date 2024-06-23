@@ -34,19 +34,23 @@ export default function Dashboard(
     lng: 0,
   });
 
-  useEffect(() => {
-    navigator.geolocation?.getCurrentPosition(
-      ({ coords: { latitude: lat, longitude: lng } }) => {
-        const pos = { lat, lng };
-        setLocation(pos);
-      }
-    );
-  });
+  try {
+    if (typeof window !== "undefined") {
+      navigator.geolocation?.getCurrentPosition(
+        ({ coords: { latitude: lat, longitude: lng } }) => {
+          const pos = { lat, lng };
+          setLocation(pos);
+        }
+      );
+    }
+  } catch (error) {
+    console.log(error);
+  }
 
   return (
     <>
       <Nav page="find-kitchen" />
-      <RegisterButton />
+      {/* <RegisterButton /> */}
       <div className="h-screen px-10 py-6 mx-auto max-w-screen-2xl text-zinc-700">
         <h1 className="mb-6 text-xl font-bold text-green-500">My Events</h1>
 
