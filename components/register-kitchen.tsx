@@ -2,6 +2,7 @@ import { PhotoIcon } from "@heroicons/react/24/solid";
 import { KitchenType } from "@prisma/client";
 import axios from "axios";
 import React, { FormEventHandler, useRef, useState } from "react";
+import { constAppliances } from "../pages/dashboard";
 
 const RegisterKitchen: React.FC<{ closeSelf: () => void }> = ({
   closeSelf,
@@ -22,13 +23,12 @@ const RegisterKitchen: React.FC<{ closeSelf: () => void }> = ({
   const [price, setPrice] = useState("");
   const [fanumTax, setFanumTax] = useState("");
 
-
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     await axios
       .post(`${process.env.NEXT_PUBLIC_DOMAIN}/api/kitchen`, {
         desc: description,
-        // appliances: [],
+        appliances: appliances,
         location: `${address} ${city} ${state} ${zip}`,
         photo:
           "https://st.hzcdn.com/simgs/pictures/kitchens/kitchens-michael-alan-kaskel-img~0d511d8e0e77ab3a_14-6521-1-7aacee2.jpg",
@@ -114,7 +114,7 @@ const RegisterKitchen: React.FC<{ closeSelf: () => void }> = ({
           </div>
         </div>
 
-        <div className="pb-12 border-b border-gray-900/10">
+        <div className="pb-10 border-b border-gray-900/10">
           <h2 className="text-base font-semibold leading-7 text-gray-900">
             Appliances
           </h2>
@@ -122,21 +122,32 @@ const RegisterKitchen: React.FC<{ closeSelf: () => void }> = ({
             Please check off all appliances your kitchen is offering.
           </p>
           <div className="">
-            <div className="flex flex-row items-center">
-              {" "}
-              <input
-                id="refrigerator"
-                name="Refrigerator"
-                type="checkbox"
-                onChange={(e) => console.log(e.target.checked)}
-                className="w-4 h-4 mr-2 text-green-500 border-gray-300 rounded focus:ring-green-500"
-              />
-              <div className="text-sm leading-6">
-                <label htmlFor="refrigerator" className="font-medium text-gray-900">
-                  Refrigerator
-                </label>
+            {constAppliances.map((item, i) => (
+              <div key={i} className="flex flex-row items-center">
+                {" "}
+                <input
+                  id={item}
+                  name={item.charAt(0).toUpperCase() + item.slice(1)}
+                  type="checkbox"
+                  onChange={(e) => {
+                    e.target.checked
+                      ? setAppliances([...appliances, e.target.name])
+                      : setAppliances(
+                          appliances.filter((item) => item !== e.target.name)
+                        );
+                  }}
+                  className="w-4 h-4 mr-2 text-green-500 border-gray-300 rounded focus:ring-green-500"
+                />
+                <div className="text-sm leading-6">
+                  <label
+                    htmlFor="refrigerator"
+                    className="font-medium text-gray-900"
+                  >
+                    {item.charAt(0).toUpperCase() + item.slice(1)}
+                  </label>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
 
